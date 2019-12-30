@@ -1,0 +1,97 @@
+spring:
+  application:
+    name: samplemicroservice
+  profiles:
+    active: "local,localDev"
+
+server:
+  port: 8080
+  servlet:
+    context-path: /samplemicroservice
+
+info:
+  app:
+    name: samplemicroservice
+    description: sample spring boot micro service with database configuration
+    version: 1.0.0
+
+application:
+    name: samplemicroservice
+    correlation_id:
+      exclusions:
+        - /samplemicroservice/actuator/health
+        - /samplemicroservice/actuator/metrics
+        - /samplemicroservice/build/version
+        - /samplemicroservice/build/name
+
+
+---
+
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:h2:file:./target/h2/db/samplemicroservice;DB_CLOSE_DELAY=-1
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: false
+    properties:
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.generate_statistics: false
+
+
+---
+
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:file:./target/h2/db/samplemicroservice;DB_CLOSE_DELAY=-1
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: false
+    properties:
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.generate_statistics: false
+
+---
+
+spring:
+  profiles: qa
+  datasource:
+    url: jdbc:h2:file:./target/h2/db/samplemicroservice;DB_CLOSE_DELAY=-1
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: false
+    properties:
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.generate_statistics: false
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:h2:file:./target/h2/db/samplemicroservice;DB_CLOSE_DELAY=-1
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: false
+    properties:
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.generate_statistics: false
